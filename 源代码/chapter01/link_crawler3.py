@@ -36,7 +36,7 @@ def link_crawler(seed_url, link_regex=None, delay=5, max_depth=-1, max_urls=-1, 
                 if link_regex:
                     # filter for links matching our regular expression
                     links.extend(link for link in get_links(html) if re.match(link_regex, link))
-
+                    
                 for link in links:
                     link = normalize(seed_url, link)
                     # check whether already crawled this link
@@ -46,6 +46,7 @@ def link_crawler(seed_url, link_regex=None, delay=5, max_depth=-1, max_urls=-1, 
                         if same_domain(seed_url, link):
                             # success! add this new link to queue
                             crawl_queue.append(link)
+
 
             # check whether have reached downloaded maximum
             num_urls += 1
@@ -131,5 +132,5 @@ def get_links(html):
 
 
 if __name__ == '__main__':
-    link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, user_agent='BadCrawler')
-    link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, max_depth=1, user_agent='GoodCrawler')
+    # link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, user_agent='BadCrawler')
+    link_crawler('http://example.webscraping.com', '/places', delay=0, num_retries=1, max_urls=2, user_agent='GoodCrawler')

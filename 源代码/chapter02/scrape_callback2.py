@@ -15,7 +15,7 @@ class ScrapeCallback:
         self.writer.writerow(self.fields)
 
     def __call__(self, url, html):
-        if re.search('/view/', url):
+        if re.search('/places/', url):
             tree = lxml.html.fromstring(html)
             row = []
             for field in self.fields:
@@ -24,4 +24,4 @@ class ScrapeCallback:
 
 
 if __name__ == '__main__':
-    link_crawler('http://example.webscraping.com/', '/(index|view)', scrape_callback=ScrapeCallback())
+    link_crawler('http://example.webscraping.com/', '/places', scrape_callback=ScrapeCallback())

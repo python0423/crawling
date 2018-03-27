@@ -1,0 +1,10 @@
+(lp0
+S'one'
+p1
+aS'two'
+p2
+aS'three'
+p3
+aS'four'
+p4
+a.

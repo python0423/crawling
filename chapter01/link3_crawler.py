@@ -2,7 +2,7 @@
 # @Author: admin
 # @Date:   2018-03-06 11:11:51
 # @Last Modified by:   admin
-# @Last Modified time: 2018-03-06 12:53:41
+# @Last Modified time: 2018-03-20 18:29:39
 
 # 完整的爬虫代码
 import re
@@ -30,7 +30,7 @@ class Throttle():
 		self.domains[domain]=datetime.now()
 
 
-def link_crawler(seed_url,link_regex,delay=3,max_depth=-1,max_urls=-1,headers=None,user_agent="wxwp",proxy=None,num_retries=2):
+def link_crawler(seed_url,link_regex,delay=2,max_depth=-1,max_urls=5,headers=None,user_agent="wxwp",proxy=None,num_retries=2):
 	# seed_url是传入的地址；link_regex是正则表达式，匹配所修的网页；delay是设定的延迟时间
 	# max_depth是设定的最大深度，-1表示无限制；max_urls 不知道
 	# headers是设定代理时构造的浏览器头文件；user_agent是设定用户代理名；proxy是支持代理
@@ -44,7 +44,7 @@ def link_crawler(seed_url,link_regex,delay=3,max_depth=-1,max_urls=-1,headers=No
 	num_urls=0
 	# 检查robot文件，依照robot设定的来爬取，rp返回的是robot文件的内容
 	rp=get_robots(seed_url)
-	throttle=Throttle(delay=5)
+	throttle=Throttle(delay=2)
 	headers=headers or {}
 	# 如果用户代理存在，则构造头文件,使用代理
 	if user_agent:
